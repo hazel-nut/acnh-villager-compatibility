@@ -1,0 +1,63 @@
+body {
+  background-color: azure;
+}
+
+header {
+  background-color: goldenrod;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+main {
+  margin: 1rem;
+}
+
+section {
+  background-color: lightgoldenrodyellow;
+  padding: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.search {
+  margin-bottom: 2rem;
+}
+
+.div-villager {
+  width: 200px;
+  display: inline-block;
+  background-color: antiquewhite;
+  border: solid 2px burlywood;
+  border-radius: 10px;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.img-villager {
+  display: block;
+  max-height: 180px;
+  margin: auto;
+  padding: 0.5rem;
+}
+
+.score {
+  font-size: small;
+  color: black;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.bad-compatibility {
+  border: solid 2px rgb(178, 34, 34);
+  background-color: rgba(178, 34, 34, 0.4);
+}
+
+.good-compatibility {
+  border: solid 2px rgb(0, 128, 0);
+  background-color: rgba(0, 128, 0, 0.4);
+}
+
+.normal-compatibility {
+  border: solid 1px grey;
+}

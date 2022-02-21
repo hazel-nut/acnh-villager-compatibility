@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>ACNH Villager Relationship Calculator</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" 
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="text-center">ACNH - Villager Relationship Calculator</h1>
+    </header>
+    <main>
+        <section id="search">
+            <h2>Select up to 10 villagers</h2>
+            <form id="form-search">
+                <label>Search:</label>
+                <input id="in-search" type="text" maxlength="25" />
+                <button id="btn-search" type="submit">Search</button>
+                <button id="btn-search-clear" type="reset">Clear</button>
+            </form>
+
+            <div id="div-search-results">
+                <!-- Search results will be added here -->
+            </div>
+
+            <div id="div-selected" class="invisible">
+                <h3>Selected Villagers:</h3>
+                <!-- Selected villagers will be added here -->
+            </div>
+        </section>
+        <section id="compatibility">
+            <h2>Villager compatibility</h2>
+            <p id="intro-text">Select villagers to view their compatibility.</p>
+            <p id="summary-text"></p>
+            <table id="tbl-matrix" class="table table-striped table-hover invisible">
+                <thead id="tbl-head-matrix">
+                    <!-- Selected villagers will be added here -->  
+                </thead>
+                <tbody id="tbl-body-matrix">
+                    <!-- Villager compatibility analysis will be added here -->  
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
