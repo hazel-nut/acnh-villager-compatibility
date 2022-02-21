@@ -265,8 +265,8 @@ function setupMatrixTable() {
         }
         // Add the row for this villager
         $tableBody.append($bodyRow);
-        $('#summary-text').text(`Overall there are ${friendlyCount} friendly pairs 
-            and ${incompatibleCount} incompatible pairs.`);
+        $('#summary-text').text(`Overall there are ${friendlyCount/2} friendly pairs 
+            and ${incompatibleCount/2} incompatible pairs.`);
     }
 }
 
