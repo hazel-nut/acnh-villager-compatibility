@@ -1,5 +1,11 @@
 # ACNH Villager Compatibility Tool
-Animal Crossing Villager Compatibility Tool
+
+_Duration: 3 hours_  
+
+To view this application live, please visit: [ACNH Villager Compatibility](https://mbmosman.github.io/acnh-villager-compatibility/)
+
+
+## Description
 
 Based on compatibility as outlined in [Nookipedia](https://nookipedia.com/wiki/Compatibility), which is based on guides published for earlier games by Nintendo.
 
