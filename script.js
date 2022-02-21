@@ -13,6 +13,21 @@ const BAD_COMPATIBILITY = 'Incompatible';
 const AVERAGE_COMPATIBILITY = 'Normal';
 const GOOD_COMPATIBILITY = 'Friendly';
 
+const MONTH_NUMBERS = {
+    January: '1',
+    February: '2',
+    March: '3',
+    April: '4', 
+    May: '5',
+    June: '6',
+    July: '7',
+    August: '8',
+    September: '9',
+    October: '10',
+    November: '11',
+    December: '12'
+};
+
 const PERSONALITY_MATRIX_INDEX = {
     'Normal':0,
     'Lazy':1,
@@ -120,6 +135,7 @@ function addToCompatibility(){
     let index = selectedVillagers.findIndex( v => v.name === villager.name);
     if (index < 0){
         selectedVillagers.push(villager);
+        selectedVillagers.sort( (v1, v2) => (v1.name > v2.name) ? 1 : -1);
         $('#div-selected').append($villagerDiv);
         // Handle display only if adding new
         showHideSelectedSearch();
@@ -169,9 +185,11 @@ function showHideCompatibilityMatrix() {
     if (selectedVillagers.length < 2){
         $('#tbl-matrix').addClass('invisible');
         $('#intro-text').removeClass('invisible');
+        $('#summary-text').addClass('invisible');
     } else if (selectedVillagers.length === 2) {
         $('#tbl-matrix').removeClass('invisible');
         $('#intro-text').addClass('invisible');
+        $('#summary-text').removeClass('invisible');
     }
 
     if (selectedVillagers.length >= 2) {
@@ -186,16 +204,37 @@ function setupMatrixTable() {
     $tableHeader.empty();
     $tableBody.empty();
 
-    let $headerRow = $('<tr><th scope="col">Name</th>');
+    let $headerRow = $('<tr><th class="text-center align-middle" scope="col">Name</th>');
     $tableHeader.append($headerRow);
 
     let friendlyCount = 0;
     let incompatibleCount = 0;
     for (let villager of selectedVillagers) {
-        $headerRow.append(`<th scope="col">${villager.name}</th>`);
+        let birthdayMonthNumber = MONTH_NUMBERS[villager.birthday_month];
+        $headerRow.append(`<th scope="col">
+            <div class="text-center villager-header">
+                ${villager.name}
+                <div class="details">
+                    <div>${villager.personality}, ${villager.species}</div>
+                    <div>${getElementFromSign(villager.sign)}, 
+                    ${villager.sign}(${birthdayMonthNumber}/${villager.birthday_day})</div>
+                </div>
+            </div>
+        </th>`);
 
         // Setup the body row for this villager
-        let $bodyRow = $(`<tr><th scope="row">${villager.name}</th></tr>`);
+        let $bodyRow = $(`<tr>
+            <th scope="row">
+                <div class="text-center villager-header">
+                    ${villager.name}
+                    <div class="details">
+                        <div>${villager.personality}, ${villager.species}</div>
+                        <div>${getElementFromSign(villager.sign)}, 
+                        ${villager.sign}(${birthdayMonthNumber}/${villager.birthday_day})</div>
+                    </div>
+                </div>
+            </th>
+        </tr>`);
         for (let subVillager of selectedVillagers) {
             if (subVillager.name !== villager.name) {
                 let score = getCompatibilityScore(villager, subVillager);

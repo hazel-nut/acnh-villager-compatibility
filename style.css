@@ -48,6 +48,10 @@ section {
   padding: 3px;
 }
 
+.villager-header .details{
+  font-size: smaller;
+}
+
 .bad-compatibility {
   border: solid 2px rgb(178, 34, 34);
   background-color: rgba(178, 34, 34, 0.4);
