@@ -1,6 +1,6 @@
 # ACNH Villager Compatibility Tool
 
-_Duration: 3 hours_  
+_Duration: 5 hours_  
 
 To view this application live, please visit: [ACNH Villager Compatibility](https://mbmosman.github.io/acnh-villager-compatibility/)
 
