@@ -94,7 +94,8 @@ function search() {
 
 function filterByName(name) {
     let results = [];
-    for (let item of acnhData){
+    for (let data of acnhData){
+        let item = data.title;
         if (item.name.toLowerCase().includes(name.toLowerCase())) {
             results.push(item);
         }
@@ -105,10 +106,32 @@ function filterByName(name) {
 function displaySearchResults(results) {
     $('#div-search-results').empty();
     for (item of results){
+        let favColors = item.fav_color2 ? `${item.fav_color1} & ${item.fav_color2}` : item.fav_color1;
+        let favStyles = item.fav_style2 ? `${item.fav_style1} & ${item.fav_style2}` : item.fav_style1;
         let villagerDiv = $(`
-            <div class="div-villager" id="div-${item.id}">
+            <div class="div-villager" id="div-${item.name}">
                 <h3 class="text-center">${item.name}</h3>
                 <img class="img-villager" src="${item.image_url}" alt="Image of ${item.name}" />
+                <div class="div-villager-details">
+                    <div class="villager-property">
+                        <label>Birthday:</label>&nbsp;<span>${item.birthday}&nbsp;(${item.sign})</span>
+                    </div>
+                    <div class="villager-property">
+                        <label>Personality:</label>&nbsp;<span>${item.personality}&nbsp;(${item.sub_personality})</span>
+                    </div>
+                    <div class="villager-property">
+                        <label>Hobby:</label>&nbsp;<span>${item.hobby}</span>
+                    </div>
+                    <div class="villager-property">
+                        <label>Catch phrase:</label>&nbsp;<span>${item.catchphrase}</span>
+                    </div>
+                    <div class="villager-property">
+                        <label>Favorite Colors:</label>&nbsp;<span>${favColors}</span>
+                    </div>
+                    <div class="villager-property">
+                        <label>Favorite Sytles:</label>&nbsp;<span>${favStyles}</span>
+                    </div>
+                </div>
                 <div class="btn-div text-center">
                     ${HTML_BUTTON_ADD}
                 </div>
@@ -116,7 +139,7 @@ function displaySearchResults(results) {
         `);
         $('#div-search-results').append(villagerDiv);
         villagerDiv.data('villager', item);
-        console.log("Added data:", $(`#div-${item.id}`).data('villager'));
+        console.log("Added data:", $(`#div-${item.name}`).data('villager'));
     }
 }
 

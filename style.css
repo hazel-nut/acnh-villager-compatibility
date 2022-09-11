@@ -19,12 +19,16 @@ section {
   border-radius: 10px;
 }
 
-.search {
+#search {
   margin-bottom: 2rem;
 }
 
+#div-search-results .div-villager-details {
+  display: none;
+}
+
 .div-villager {
-  width: 200px;
+  min-width: 300px;
   display: inline-block;
   background-color: antiquewhite;
   border: solid 2px burlywood;
@@ -64,4 +68,11 @@ section {
 
 .normal-compatibility {
   border: solid 1px grey;
+}
+
+.div-villager-details {
+  text-align: center;
+}
+.villager-property label {
+  font-weight: bold;
 }
