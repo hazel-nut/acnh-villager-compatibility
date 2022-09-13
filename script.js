@@ -13,21 +13,6 @@ const BAD_COMPATIBILITY = 'Incompatible';
 const AVERAGE_COMPATIBILITY = 'Normal';
 const GOOD_COMPATIBILITY = 'Friendly';
 
-const MONTH_NUMBERS = {
-    January: '1',
-    February: '2',
-    March: '3',
-    April: '4', 
-    May: '5',
-    June: '6',
-    July: '7',
-    August: '8',
-    September: '9',
-    October: '10',
-    November: '11',
-    December: '12'
-};
-
 const PERSONALITY_MATRIX_INDEX = {
     'Normal':0,
     'Lazy':1,
@@ -49,7 +34,7 @@ const PERSONALITY_MATRIX = [
     [BETTER,BEST,OK,OK,POOR,BETTER,POOR,BEST]];
 
 const SPECIES_BEST_AFFINITIES = [
-    ['Bull', 'Cow'], ['Bear', 'Bear cub'], ['Cat', 'Tiger'],
+    ['Bull', 'Cow'], ['Bear', 'Bear cub'],['Bear', 'Cub'], ['Cat', 'Tiger'],
     ['Dog', 'Wolf'], ['Goat', 'Sheep'], ['Kangaroo', 'Koala']
 ];
 
