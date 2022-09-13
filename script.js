@@ -233,14 +233,12 @@ function setupMatrixTable() {
     let friendlyCount = 0;
     let incompatibleCount = 0;
     for (let villager of selectedVillagers) {
-        let birthdayMonthNumber = MONTH_NUMBERS[villager.birthday_month];
         $headerRow.append(`<th scope="col">
             <div class="text-center villager-header">
                 ${villager.name}
                 <div class="details">
-                    <div>${villager.personality}, ${villager.species}</div>
-                    <div>${getElementFromSign(villager.sign)}, 
-                    ${villager.sign}(${birthdayMonthNumber}/${villager.birthday_day})</div>
+                    <div>${villager.personality}, ${villager.species},</div>
+                    <div>${getElementFromSign(villager.sign)}, ${villager.sign}</div>
                 </div>
             </div>
         </th>`);
@@ -251,9 +249,8 @@ function setupMatrixTable() {
                 <div class="text-center villager-header">
                     ${villager.name}
                     <div class="details">
-                        <div>${villager.personality}, ${villager.species}</div>
-                        <div>${getElementFromSign(villager.sign)}, 
-                        ${villager.sign}(${birthdayMonthNumber}/${villager.birthday_day})</div>
+                        <div>${villager.personality}, ${villager.species},</div>
+                        <div>${getElementFromSign(villager.sign)}, ${villager.sign}</div>
                     </div>
                 </div>
             </th>
