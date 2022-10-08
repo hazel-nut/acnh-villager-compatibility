@@ -319,7 +319,7 @@ function getElementCompatibility(sign1, sign2) {
         return BEST;
     } else if ((FIRE_WATER.includes(element1) &&  FIRE_WATER.includes(element2)) ||
             (EARTH_AIR.includes(element1) && EARTH_AIR.includes(element2))) {
-        return POOR;
+        return BAD;
     }
     return BETTER;
 }
