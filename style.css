@@ -15,12 +15,8 @@ main {
 section {
   background-color: lightgoldenrodyellow;
   padding: 2rem;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-}
-
-#search {
   margin-bottom: 2rem;
+  border-radius: 10px;
 }
 
 #div-search-results .div-villager-details {

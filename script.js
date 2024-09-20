@@ -39,8 +39,7 @@ const SPECIES_BEST_AFFINITIES = [
 ];
 
 const SPECIES_BETTER_AFFINITIES = [
-    ['Deer', 'Horse'], 
-    ['Hamster', 'Squirrel', 'Mouse'] 
+    ['Deer', 'Horse'], ['Hamster', 'Squirrel', 'Mouse'] 
 ];
 
 const SPECIES_POOR_AFFINITIES = [
@@ -51,7 +50,6 @@ const FIRE_SIGNS = ['Aries', 'Leo', 'Sagittarius'];
 const EARTH_SIGNS = ['Taurus', 'Virgo', 'Capricorn'];
 const AIR_SIGNS = ['Gemini', 'Libra', 'Aquarius'];
 const WATER_SIGNS = ['Cancer','Scorpio','Pisces'];
-
 
 $(onReady);
 
@@ -114,7 +112,7 @@ function displaySearchResults(results) {
                         <label>Favorite Colors:</label>&nbsp;<span>${favColors}</span>
                     </div>
                     <div class="villager-property">
-                        <label>Favorite Sytles:</label>&nbsp;<span>${favStyles}</span>
+                        <label>Favorite Styles:</label>&nbsp;<span>${favStyles}</span>
                     </div>
                 </div>
                 <div class="btn-div text-center">
@@ -191,11 +189,11 @@ function showHideSelectedSection() {
 
 function showHideCompatibilityMatrix() {
     if (selectedVillagers.length < 2){
-        $('#tbl-matrix').addClass('invisible');
+        $('#tbl-matrix').addClass('d-none');
         $('#intro-text').removeClass('invisible');
         $('#summary-text').addClass('invisible');
     } else if (selectedVillagers.length === 2) {
-        $('#tbl-matrix').removeClass('invisible');
+        $('#tbl-matrix').removeClass('d-none');
         $('#intro-text').addClass('invisible');
         $('#summary-text').removeClass('invisible');
     }
@@ -304,8 +302,6 @@ function getCompatibilityScore(villager1, villager2) {
 
     console.log('Score:', score);
     return score;
-
-    
 }
 
 function getElementCompatibility(sign1, sign2) {
@@ -325,7 +321,6 @@ function getElementCompatibility(sign1, sign2) {
 }
 
 function getElementFromSign(sign) {
-    
     if (FIRE_SIGNS.includes(sign)){
         return 'Fire';
     } 
@@ -338,7 +333,7 @@ function getElementFromSign(sign) {
     if (AIR_SIGNS.includes(sign)) {
         return 'Air';
     }
-    console.log('Error: Element unknow for sign=' + sign);
+    console.log('Error: Element unknown for sign=' + sign);
     return 'Unknown';
 }
 
@@ -366,7 +361,6 @@ function getSpeciesCompatibility(species1 , species2) {
         }
     }
 
-    // Otherwise OK
     return OK;
 }
 
@@ -375,4 +369,3 @@ function getPersonalityCompatibility(personality1, personality2) {
     let j = PERSONALITY_MATRIX_INDEX[personality2];
     return PERSONALITY_MATRIX[i][j];
 }
-
