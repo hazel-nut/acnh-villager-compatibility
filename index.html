@@ -6,7 +6,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="villagers.js"></script>
     <script type="text/javascript" src="script.js"></script>
     <link rel="stylesheet" 
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
@@ -19,13 +19,31 @@
     </header>
     <main>
         <section>
-            <h2>Search for Villagers</h2>
+            <h2>Select Villagers</h2>
             <p>Select up to 10 villagers.</p>
+            <br/>
+
+            <h4>Search by name</h4>
             <form id="form-search">
-                <label>Search:</label>
+                <label for="in-search">Name:</label>
                 <input id="in-search" type="text" maxlength="25" />
-                <button id="btn-search" type="submit">Search</button>
+                <br/>
+                <button id="btn-search" type="submit">Search by name</button>
                 <button id="btn-search-clear" type="reset">Clear</button>
+            </form>
+            <br/>
+
+            <h4>Search by criteria</h4>
+            <form id="filter-search">
+                <input id="no-bad" type="checkbox" />
+                <label for="no-bad">No incompatibilities with selected villagers</label>
+                <br/>
+                <input id="only-good" type="checkbox" />
+                <label for="only-good">Only good compatibility with selected villagers</label>
+                <br/>
+                <button id="btn-filter" type="submit">Search by criteria</button>
+                <button id="btn-filter-clear" type="reset">Clear</button>
+                <br/>
             </form>
 
             <div id="div-search-results">

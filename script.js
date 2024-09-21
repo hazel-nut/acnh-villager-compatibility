@@ -62,6 +62,14 @@ function onReady() {
         $('#in-search').val('');
         $('#div-search-results').empty();
     });
+    $('#btn-filter').on('click', function(event){
+        event.preventDefault();
+        filter()
+    });
+    $('#btn-filter-clear').on('click', function(event){
+        // uncheck stuff
+        $('#div-search-results').empty();
+    });
     $('#div-search-results').on('click', '.btn-add-villager', addToCompatibility);
     $('#div-selected').on('click', '.btn-remove-villager', removeFromCompatibility);
 }
@@ -69,18 +77,47 @@ function onReady() {
 function search() {
     let name = $('#in-search').val();
     $('#in-search').val('');
-    console.log('Name to search:', name);
-    let results = filterByName(name);
-    console.log("Results:", results);
-    displaySearchResults(results);
+    displaySearchResults(filterByName(name));
+}
+
+function filter() {
+    displaySearchResults(filterByCriteria());
 }
 
 function filterByName(name) {
     let results = [];
-    for (let data of acnhData){
-        let item = data.title;
-        if (item.name.toLowerCase().includes(name.toLowerCase())) {
-            results.push(item);
+    for (let v of allVillagers){
+        if (v.name.toLowerCase().includes(name.toLowerCase())) {
+            results.push(v);
+        }
+    }
+    return results;
+}
+
+function filterByCriteria() {
+    let notIncompatible = document.querySelector('#no-bad').checked;
+    let onlyCompatible = document.querySelector('#only-good').checked;
+
+    let results = [];
+    for (let villager of allVillagers) {
+        let allow = true;
+        for(let selected of selectedVillagers) {
+            if (selected.name === villager.name) {
+                allow = false;
+                continue;
+            }
+
+            let score = getCompatibilityScore(villager, selected);
+            if ((score.display === BAD_COMPATIBILITY && notIncompatible) ||
+                (!(score.display === GOOD_COMPATIBILITY) && onlyCompatible)) {
+                allow = false;
+                break;
+            }
+        }
+        if (allow) {
+            results.push(villager);
+        } else {
+            console.log("Incompatible villager: " + villager.name);
         }
     }
     return results;
@@ -95,25 +132,23 @@ function displaySearchResults(results) {
             <div class="div-villager" id="div-${item.name}">
                 <h3 class="text-center">${item.name}</h3>
                 <img class="img-villager" src="${item.image_url}" alt="Image of ${item.name}" />
-                <div class="div-villager-details">
-                    <div class="villager-property">
-                        <label>Birthday:</label>&nbsp;<span>${item.birthday}&nbsp;(${item.sign})</span>
-                    </div>
-                    <div class="villager-property">
-                        <label>Personality:</label>&nbsp;<span>${item.personality}&nbsp;(${item.sub_personality})</span>
-                    </div>
-                    <div class="villager-property">
-                        <label>Hobby:</label>&nbsp;<span>${item.hobby}</span>
-                    </div>
-                    <div class="villager-property">
-                        <label>Catch phrase:</label>&nbsp;<span>${item.catchphrase}</span>
-                    </div>
-                    <div class="villager-property">
-                        <label>Favorite Colors:</label>&nbsp;<span>${favColors}</span>
-                    </div>
-                    <div class="villager-property">
-                        <label>Favorite Styles:</label>&nbsp;<span>${favStyles}</span>
-                    </div>
+                <div class="villager-details">
+                <dl>
+                    <dt>Birthday</dt>
+                    <dd>${item.birthday}</dd>
+                    <dt>Sign</dt>
+                    <dd>${item.sign}</dd>
+                    <dt>Personality</dt>
+                    <dd>${item.personality} (${item.sub_personality})</dd>
+                    <dt>Hobby</dt>
+                    <dd>${item.hobby}</dd>
+                    <dt>Catchphrase</dt>
+                    <dd>${item.catchphrase}</dd>
+                    <dt>Fav colors</dt>
+                    <dd>${favColors}</dd>
+                    <dt>Fav styles</dt>
+                    <dd>${favStyles}</dd>
+                </dl>
                 </div>
                 <div class="btn-div text-center">
                     ${HTML_BUTTON_ADD}
@@ -122,7 +157,6 @@ function displaySearchResults(results) {
         `);
         $('#div-search-results').append(villagerDiv);
         villagerDiv.data('villager', item);
-        console.log("Added data:", $(`#div-${item.name}`).data('villager'));
     }
 }
 
@@ -281,30 +315,24 @@ function getCompatibilityScore(villager1, villager2) {
         personality: 0
     }
 
-    score.element = getElementCompatibility(villager1.sign, villager2.sign);
-    score.total += score.element;
+    score.element = getElementScore(villager1.sign, villager2.sign);
+    score.species = getSpeciesScore(villager1.species, villager2.species);
+    score.personality = getPersonalityScore(villager1.personality, villager2.personality);
+    score.total += score.species + score.element + score.personality;
     
-    score.species = getSpeciesCompatibility(villager1.species, villager2.species);
-    score.total += score.species;
-    
-    score.personality = getPersonalityCompatibility(villager1.personality, villager2.personality);
-    score.total += score.personality;
-    
-    if ( (score.species === BEST && score.total >= 9) || 
-         (score.species===BETTER && score.total >= 10) ||
-         (score.species===OK && score.total >= 11) ) {
+    if ((score.species === BEST   && score.total >= 9) || 
+        (score.species === BETTER && score.total >= 10) ||
+        (score.species === OK     && score.total >= 11) ) {
         score.display = GOOD_COMPATIBILITY;
-    } else if ( score.total <= 3 ) {
+    } else if (score.total <= 3) {
         score.display = BAD_COMPATIBILITY;
     } else {
         score.display = AVERAGE_COMPATIBILITY;
     }
-
-    console.log('Score:', score);
     return score;
 }
 
-function getElementCompatibility(sign1, sign2) {
+function getElementScore(sign1, sign2) {
     const FIRE_WATER = ['Fire', 'Water'];
     const EARTH_AIR = ['Earth', 'Air'];
 
@@ -316,28 +344,27 @@ function getElementCompatibility(sign1, sign2) {
     } else if ((FIRE_WATER.includes(element1) &&  FIRE_WATER.includes(element2)) ||
             (EARTH_AIR.includes(element1) && EARTH_AIR.includes(element2))) {
         return BAD;
+    } else {
+        return BETTER;
     }
-    return BETTER;
 }
 
 function getElementFromSign(sign) {
-    if (FIRE_SIGNS.includes(sign)){
+    if (FIRE_SIGNS.includes(sign)) {
         return 'Fire';
-    } 
-    if (EARTH_SIGNS.includes(sign)) {
+    } else if (EARTH_SIGNS.includes(sign)) {
         return 'Earth';
-    }
-    if (WATER_SIGNS.includes(sign)) {
+    } else if (WATER_SIGNS.includes(sign)) {
         return 'Water';
-    }
-    if (AIR_SIGNS.includes(sign)) {
+    } else if (AIR_SIGNS.includes(sign)) {
         return 'Air';
+    } else {
+        console.log('Error: Element unknown for sign=' + sign);
+        return 'Unknown';
     }
-    console.log('Error: Element unknown for sign=' + sign);
-    return 'Unknown';
 }
 
-function getSpeciesCompatibility(species1 , species2) {
+function getSpeciesScore(species1 , species2) {
     if (species1 === species2) {
         return BETTER;
     }
@@ -364,7 +391,7 @@ function getSpeciesCompatibility(species1 , species2) {
     return OK;
 }
 
-function getPersonalityCompatibility(personality1, personality2) {
+function getPersonalityScore(personality1, personality2) {
     let i = PERSONALITY_MATRIX_INDEX[personality1];
     let j = PERSONALITY_MATRIX_INDEX[personality2];
     return PERSONALITY_MATRIX[i][j];

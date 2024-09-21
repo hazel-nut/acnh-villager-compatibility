@@ -1,4 +1,4 @@
-[
+let allVillagers = [
   {
     "name": "Ace",
     "image_url": "https://dodo.ac/np/images/9/91/Ace_amiibo.png",
@@ -7020,4 +7020,4 @@
     "fav_style1": "Simple",
     "fav_style2": "Cute"
   }
-]
+];
