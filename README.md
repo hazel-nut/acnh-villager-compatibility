@@ -4,7 +4,9 @@ built on top of @mbMosman's [original version](https://github.com/mbMosman/acnh-
 
 this fork adds search by criteria features. mucks with some styling.
 
-work in progress.
+live version: https://hazel-nut.github.io/acnh-villager-compatibility/
+
+still a work in progress.
 
 ## data
 
