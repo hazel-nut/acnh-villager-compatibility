@@ -18,15 +18,25 @@ section {
   border-radius: 20px;
 }
 
+.section-search {
+  display: inline-block;
+  width: 30%;
+}
+
+.section-results {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(70% - 0.5rem);
+}
+
+#by-name {
+  width: 10em;
+}
+
 #div-search-results, #div-selected {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.div-search {
-  display: inline-block;
-  width: 45%;
 }
 
 .div-villager {

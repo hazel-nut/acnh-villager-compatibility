@@ -90,7 +90,7 @@ function filterByName(names) {
     let results = [];
     for (let v of allVillagers){
         for (let n of names){
-            if (v.name.includes(n)) {
+            if (v.name == n) {
                 results.push(v);
             }
         }

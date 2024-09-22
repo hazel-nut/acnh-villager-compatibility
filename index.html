@@ -18,22 +18,19 @@
         <h1 class="text-center">ACNH Villager Relationship Calculator</h1>
     </header>
     <main>
-        <section>
+        <section class="section-search">
             <h2>Select Villagers</h2>
             <p>Select up to 10 villagers.</p>
-            <br/>
 
-            <div class="div-search">
             <h4>Search by name</h4>
 
-            <label for="by-name">Add specific villagers:</label>
-            <select name="by-name" id="by-name" multiple required>
+            <select name="by-name" id="by-name" size=10 multiple required>
             </select>
             <br/>
             <button id="btn-name" type="submit">Search by name</button>
-            </div>
 
-            <div class="div-search">
+            <br/><br/><br/>
+
             <h4>Search by criteria</h4>
             <form id="filter-search">
                 <input id="no-bad" type="checkbox" />
@@ -45,10 +42,9 @@
                 <button id="btn-filter" type="submit">Search by criteria</button>
                 <br/>
             </form>
-            </div>
         </section>
 
-        <section>
+        <section class="section-results">
             <h2>Search Results</h2>
             <button id="btn-clear" type="reset">Clear results</button>
             <div id="div-search-results">
