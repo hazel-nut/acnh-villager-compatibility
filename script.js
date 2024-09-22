@@ -61,17 +61,12 @@ function onReady() {
         let names = $('#by-name').val();
         displaySearchResults(filterByName(names));
     });
-    $('#btn-search-clear').on('click', function(event){
-        $('#in-search').val('');
+    $('#btn-clear').on('click', function(event){
         $('#div-search-results').empty();
     });
     $('#btn-filter').on('click', function(event){
         event.preventDefault();
         displaySearchResults(filterByCriteria());
-    });
-    $('#btn-filter-clear').on('click', function(event){
-        // uncheck stuff?
-        $('#div-search-results').empty();
     });
     $('#div-search-results').on('click', '.btn-add-villager', addToCompatibility);
     $('#div-selected').on('click', '.btn-remove-villager', removeFromCompatibility);
