@@ -1,9 +1,35 @@
+@property --acnh-green {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #9dffb0;
+}
+@property --acnh-blue {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #81f1f7;
+}
+@property --acnh-white {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #fffffa;
+}
+@property --acnh-brown {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #c48d3f;
+}
+@property --acnh-yellow {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #fff563;
+}
+
 body {
-  background-color: azure;
+  background-color: var(--acnh-yellow);
 }
 
 header {
-  background-color: goldenrod;
+  background-color: var(--acnh-brown);
   padding: 0.5rem;
 }
 
@@ -12,7 +38,7 @@ main {
 }
 
 section {
-  background-color: lightgoldenrodyellow;
+  background-color: var(--acnh-green);
   padding: 1rem;
   margin-bottom: 1rem;
   border-radius: 20px;
@@ -24,6 +50,7 @@ section {
 }
 
 .section-results {
+  background-color: var(--acnh-blue);
   display: inline-block;
   vertical-align: top;
   width: calc(67% - 0.5rem);
