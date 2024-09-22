@@ -46,14 +46,15 @@ section {
 
 .section-search {
   display: inline-block;
-  width: 33%;
+  width: calc(35% - 1.5rem);
 }
 
 .section-results {
   background-color: var(--acnh-blue);
   display: inline-block;
   vertical-align: top;
-  width: calc(67% - 0.5rem);
+  width: 65%;
+  margin-left: 0.5rem;
 }
 
 #by-name {
@@ -72,8 +73,8 @@ section {
   min-width: 200px;
   margin-bottom: 0.5rem;
   margin-left: 0.5rem;
-  background-color: antiquewhite;
-  border: solid 2px burlywood;
+  background-color: hwb(from var(--acnh-yellow) h w b / 0.75);
+  border: solid 2px var(--acnh-yellow);
   border-radius: 50px;
   padding: 0.5rem;
 }
