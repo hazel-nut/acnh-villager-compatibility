@@ -46,14 +46,14 @@ section {
 
 .section-search {
   display: inline-block;
-  width: calc(35% - 1.5rem);
+  width: 35%;
 }
 
 .section-results {
   background-color: var(--acnh-blue);
   display: inline-block;
   vertical-align: top;
-  width: 65%;
+  width: calc(65% - 1rem);
   margin-left: 0.5rem;
 }
 
