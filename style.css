@@ -18,19 +18,31 @@ section {
   border-radius: 20px;
 }
 
-#div-search-results .div-villager-details {
-  display: none;
+#div-search-results, #div-selected {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.div-search {
+  display: inline-block;
+  width: 45%;
 }
 
 .div-villager {
-  width: 225px;
-  display: inline-block;
+  flex: 1 1 auto;
+  max-width: 300px;
+  min-width: 200px;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
   background-color: antiquewhite;
   border: solid 2px burlywood;
   border-radius: 50px;
-  margin-left: 0.5rem;
-  margin-bottom: 0.5rem;
   padding: 0.5rem;
+}
+
+.div-villager:last-of-type {
+  margin-right: auto;
 }
 
 .img-villager {

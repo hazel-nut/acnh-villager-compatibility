@@ -54,9 +54,12 @@ const WATER_SIGNS = ['Cancer','Scorpio','Pisces'];
 $(onReady);
 
 function onReady() {
-    $('#btn-search').on('click', function(event){
+    initializeVillagerMenu();
+
+    $('#btn-name').on('click', function(event){
         event.preventDefault();
-        search()
+        let names = $('#by-name').val();
+        displaySearchResults(filterByName(names));
     });
     $('#btn-search-clear').on('click', function(event){
         $('#in-search').val('');
@@ -64,31 +67,32 @@ function onReady() {
     });
     $('#btn-filter').on('click', function(event){
         event.preventDefault();
-        filter()
+        displaySearchResults(filterByCriteria());
     });
     $('#btn-filter-clear').on('click', function(event){
-        // uncheck stuff
+        // uncheck stuff?
         $('#div-search-results').empty();
     });
     $('#div-search-results').on('click', '.btn-add-villager', addToCompatibility);
     $('#div-selected').on('click', '.btn-remove-villager', removeFromCompatibility);
 }
 
-function search() {
-    let name = $('#in-search').val();
-    $('#in-search').val('');
-    displaySearchResults(filterByName(name));
+function initializeVillagerMenu() {
+    for (let villager of allVillagers) {
+        let villagerOption = $(`
+            <option value="${villager.name}">${villager.name}</option>
+        `);
+        $('#by-name').append(villagerOption);
+    }
 }
 
-function filter() {
-    displaySearchResults(filterByCriteria());
-}
-
-function filterByName(name) {
+function filterByName(names) {
     let results = [];
     for (let v of allVillagers){
-        if (v.name.toLowerCase().includes(name.toLowerCase())) {
-            results.push(v);
+        for (let n of names){
+            if (v.name.includes(n)) {
+                results.push(v);
+            }
         }
     }
     return results;

@@ -23,16 +23,17 @@
             <p>Select up to 10 villagers.</p>
             <br/>
 
+            <div class="div-search">
             <h4>Search by name</h4>
-            <form id="form-search">
-                <label for="in-search">Name:</label>
-                <input id="in-search" type="text" maxlength="25" />
-                <br/>
-                <button id="btn-search" type="submit">Search by name</button>
-                <button id="btn-search-clear" type="reset">Clear</button>
-            </form>
-            <br/>
 
+            <label for="by-name">Add specific villagers:</label>
+            <select name="by-name" id="by-name" multiple required>
+            </select>
+            <br/>
+            <button id="btn-name" type="submit">Search by name</button>
+            </div>
+
+            <div class="div-search">
             <h4>Search by criteria</h4>
             <form id="filter-search">
                 <input id="no-bad" type="checkbox" />
@@ -42,20 +43,26 @@
                 <label for="only-good">Only good compatibility with selected villagers</label>
                 <br/>
                 <button id="btn-filter" type="submit">Search by criteria</button>
-                <button id="btn-filter-clear" type="reset">Clear</button>
                 <br/>
             </form>
+            </div>
+        </section>
 
+        <section>
+            <h2>Search Results</h2>
+            <button id="btn-clear" type="reset">Clear results</button>
             <div id="div-search-results">
                 <!-- Search results will be added here -->
             </div>
         </section>
+
         <section>
             <h2>Selected Villagers</h3>
             <div id="div-selected" class="invisible">
                 <!-- Selected villagers will be added here -->
             </div>
         </section>
+
         <section id="compatibility">
             <h2>Villager Compatibility</h2>
             <p id="intro-text">Select multiple villagers to view their compatibility.</p>
