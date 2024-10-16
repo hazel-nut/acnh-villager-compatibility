@@ -86,10 +86,12 @@ function initializeVillagerMenu() {
     for (let villager of allVillagers) {
         personality.add(villager.personality);
         species.add(villager.species);
-        let villagerOption = $(`
+        $('#by-name').append($(`
             <option value="${villager.name}">${villager.name}</option>
-        `);
-        $('#by-name').append(villagerOption);
+        `));
+        $('#friend-requirement').append($(`
+            <option value="${villager.name}">${villager.name}</option>
+        `));
     }
 
     for (let p of Array.from(personality).sort()) {
@@ -128,36 +130,23 @@ function filterByName(names) {
 }
 
 function filterByCriteria() {
-    let notIncompatible = document.querySelector('#no-bad').checked;
-    let onlyCompatible = document.querySelector('#only-good').checked;
+    let results = allVillagers.filter((v) => !selectedVillagers.includes(v))
+                    .filter((v) => criteria.get(v.personality) && criteria.get(v.species));
 
-    let results = [];
-    for (let villager of allVillagers) {
-        let allow = true;
-
-       if (!criteria.get(villager.personality) ||
-           !criteria.get(villager.species)) {
-            continue;
+    if (document.querySelector('#no-bad').checked) {
+        for (let s of selectedVillagers) {
+            results = results.filter(
+                (v) => getCompatibilityScore(v, s).display !== BAD_COMPATIBILITY
+            );
         }
+    }
 
-        for(let selected of selectedVillagers) {
-            if (selected.name === villager.name) {
-                allow = false;
-                break;
-            }
-
-            let score = getCompatibilityScore(villager, selected);
-            if ((score.display === BAD_COMPATIBILITY && notIncompatible) ||
-                (!(score.display === GOOD_COMPATIBILITY) && onlyCompatible)) {
-                allow = false;
-                break;
-            }
-        }
-        if (allow) {
-            results.push(villager);
-        } else {
-            console.log("Incompatible villager: " + villager.name);
-        }
+    let friendName = document.querySelector('#friend-requirement').selectedOptions[0].value;
+    let mandatoryFriend = allVillagers.find((v) => v.name == friendName);
+    if (mandatoryFriend) {
+        results = results.filter(
+            (v) => getCompatibilityScore(v, mandatoryFriend).display === GOOD_COMPATIBILITY
+        );
     }
     return results;
 }

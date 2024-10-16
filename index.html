@@ -27,7 +27,7 @@
             <br/><br/>
 
             <h3>Search by name</h3>
-            <select name="by-name" id="by-name" size=10 multiple required>
+            <select name="by-name" id="by-name" size=5 multiple required>
             </select>
             <br/>
             <button id="btn-name" type="submit">Search by name</button>
@@ -36,11 +36,16 @@
 
             <h3>Search by criteria</h3>
             <form id="filter-search">
-                <input id="no-bad" type="checkbox" />
-                <label for="no-bad">No incompatibility with selected villagers</label>
-                <br/>
-                <input id="only-good" type="checkbox" />
-                <label for="only-good">Only good compatibility with selected villagers</label>
+                <div id="mandatory-friendship">
+                    <h4>Compatibility</h4>
+                    <input id="no-bad" type="checkbox" />
+                    <label for="no-bad">No incompatibility with selected villagers</label>
+                    <br/>
+                    <label for="friend-requirement">Must be friends with...</label>
+                    <select id="friend-requirement">
+                        <option value="">No one</option>
+                    </select>
+                </div>
                 <br/>
                 <div id="personality-buttons">
                     <h4>Personality</h4>
