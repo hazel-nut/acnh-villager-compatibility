@@ -51,6 +51,8 @@ const EARTH_SIGNS = ['Taurus', 'Virgo', 'Capricorn'];
 const AIR_SIGNS = ['Gemini', 'Libra', 'Aquarius'];
 const WATER_SIGNS = ['Cancer','Scorpio','Pisces'];
 
+var criteria = new Map();
+
 $(onReady);
 
 function onReady() {
@@ -72,12 +74,44 @@ function onReady() {
     $('#div-selected').on('click', '.btn-remove-villager', removeFromCompatibility);
 }
 
+function toggleCriteria(c) {
+    criteria.set(c, !criteria.get(c));
+    document.getElementById("button-" + c).classList.toggle('clicked')
+}
+
 function initializeVillagerMenu() {
+    var personality = new Set();
+    var species = new Set();
+
     for (let villager of allVillagers) {
+        personality.add(villager.personality);
+        species.add(villager.species);
         let villagerOption = $(`
             <option value="${villager.name}">${villager.name}</option>
         `);
         $('#by-name').append(villagerOption);
+    }
+
+    for (let p of Array.from(personality).sort()) {
+        criteria.set(p, true);
+        let pButton = $(`
+            <button class="pill clicked" type="button" id="button-${p}"
+                    onclick="toggleCriteria('${p}')">
+                ${p}
+            </button>
+        `);
+        $('#personality-buttons').append(pButton);
+    }
+
+    for (let s of Array.from(species).sort()) {
+        criteria.set(s, true);
+        let sButton = $(`
+            <button class="pill clicked" type="button" id="button-${s}"
+                    onclick="toggleCriteria('${s}')">
+                ${s}
+            </button>
+        `);
+        $('#species-buttons').append(sButton);
     }
 }
 
@@ -100,10 +134,16 @@ function filterByCriteria() {
     let results = [];
     for (let villager of allVillagers) {
         let allow = true;
+
+       if (!criteria.get(villager.personality) ||
+           !criteria.get(villager.species)) {
+            continue;
+        }
+
         for(let selected of selectedVillagers) {
             if (selected.name === villager.name) {
                 allow = false;
-                continue;
+                break;
             }
 
             let score = getCompatibilityScore(villager, selected);

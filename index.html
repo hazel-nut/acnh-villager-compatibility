@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>ACNH Villager Relationship Calculator</title>
     <meta charset="UTF-8" />
@@ -23,23 +24,31 @@
             <p>Select up to 10 villagers.</p>
             <button id="btn-clear" type="reset">Clear results</button>
 
-            <br/><br/><br/>
+            <br/><br/>
 
-            <h4>Search by name</h4>
+            <h3>Search by name</h3>
             <select name="by-name" id="by-name" size=10 multiple required>
             </select>
             <br/>
             <button id="btn-name" type="submit">Search by name</button>
 
-            <br/><br/><br/>
+            <br/><br/>
 
-            <h4>Search by criteria</h4>
+            <h3>Search by criteria</h3>
             <form id="filter-search">
                 <input id="no-bad" type="checkbox" />
                 <label for="no-bad">No incompatibility with selected villagers</label>
                 <br/>
                 <input id="only-good" type="checkbox" />
                 <label for="only-good">Only good compatibility with selected villagers</label>
+                <br/>
+                <div id="personality-buttons">
+                    <h4>Personality</h4>
+                </div>
+                <br/>
+                <div id="species-buttons">
+                    <h4>Species</h4>
+                </div>
                 <br/>
                 <button id="btn-filter" type="submit">Search by criteria</button>
                 <br/>

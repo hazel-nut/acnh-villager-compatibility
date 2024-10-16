@@ -120,6 +120,17 @@ section {
   margin: auto;
 }
 
+.pill {
+  border-radius: 999px;
+  margin: 2px;
+  width: 30%;
+  opacity: 0.33;
+}
+
+.clicked {
+  opacity: 1;
+}
+
 dt {
   display: inline;
   font-weight: bold;
