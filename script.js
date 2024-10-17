@@ -162,14 +162,14 @@ function displaySearchResults(results) {
                 <img class="img-villager" src="${item.image_url}" alt="Image of ${item.name}" />
                 <div class="villager-details">
                 <dl>
-                    <dt>Birthday</dt>
-                    <dd>${item.birthday}</dd>
-                    <dt>Sign</dt>
-                    <dd>${item.sign}</dd>
+                    <dt>Species</dt>
+                    <dd>${item.species}</dd>
                     <dt>Personality</dt>
                     <dd>${item.personality} (${item.sub_personality})</dd>
                     <dt>Hobby</dt>
                     <dd>${item.hobby}</dd>
+                    <dt>Birthday</dt>
+                    <dd>${item.birthday} (${item.sign})</dd>
                     <dt>Catchphrase</dt>
                     <dd>${item.catchphrase}</dd>
                     <dt>Fav colors</dt>
